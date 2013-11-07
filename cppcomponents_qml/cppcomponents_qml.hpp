@@ -3,6 +3,8 @@
 
 #include <cppcomponents/cppcomponents.hpp>
 
+
+
 struct IApp:cppcomponents::define_interface<cppcomponents::uuid<0xdef7a143, 0xf4d0, 0x44cf, 0xb435, 0xf40526ad8d46>>
 {
     int Exec();
@@ -40,5 +42,18 @@ inline std::string QuickViewId(){return "cppcomponents.qml.View";}
 typedef cppcomponents::runtime_class<QuickViewId,cppcomponents::object_interfaces<IQuickView>> QuickView_t;
 typedef cppcomponents::use_runtime_class<QuickView_t> QuickView;
 
+
+struct IExtensionStatics : cppcomponents::define_interface<cppcomponents::uuid<0x0521a6b4, 0x89f8, 0x457a, 0x8b17, 0xe1311c0bc79e>>
+{
+    int Main(int argc, char** argv);
+
+    CPPCOMPONENTS_CONSTRUCT(IExtensionStatics,Main)
+
+
+};
+
+inline std::string ExtensionId(){return "Extension!cppcomponents_qml_extension";}
+typedef cppcomponents::runtime_class<ExtensionId,cppcomponents::static_interfaces<IExtensionStatics>> Extension_t;
+typedef cppcomponents::use_runtime_class<Extension_t> Extension;
 
 #endif // CPPCOMPONENTS_QML_HPP
